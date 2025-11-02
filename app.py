@@ -48,7 +48,7 @@ elif page == "App":
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file).convert("RGB")
-        st.image(image, caption="Input image", use_column_width=True)
+        st.image(image, caption="Input image")
 
         if run_button:
             with st.spinner("Running inference..."):
@@ -72,7 +72,7 @@ elif page == "App":
                         r = results[0]
                         # Annotated image as numpy array
                         annotated = r.plot()  # returns RGB ndarray
-                        st.image(annotated, caption="Annotated image", use_column_width=True)
+                        st.image(annotated, caption="Annotated image")
 
                         # Number of detections
                         num_detections = len(r.boxes)
