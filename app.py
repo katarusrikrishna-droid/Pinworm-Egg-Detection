@@ -77,27 +77,6 @@ elif page == "App":
                         # Number of detections
                         num_detections = len(r.boxes)
                         st.success(f"Total objects detected: {num_detections}")
-
-                        # Show details table if any detections
-                        if num_detections > 0:
-                            try:
-                                boxes = r.boxes.xyxy.cpu().numpy()  # x1,y1,x2,y2
-                                scores = r.boxes.conf.cpu().numpy()
-                                classes = r.boxes.cls.cpu().numpy().astype(int)
-                                rows = []
-                                for i, (b, s, c) in enumerate(zip(boxes, scores, classes), start=1):
-                                    rows.append({
-                                        "id": i,
-                                        "class": int(c),
-                                        "confidence": float(s),
-                                        "x1": float(b[0]),
-                                        "y1": float(b[1]),
-                                        "x2": float(b[2]),
-                                        "y2": float(b[3])
-                                    })
-                                st.table(rows)
-                            except Exception:
-                                st.info("Detections present but couldn't extract box details.")
                 except Exception as e:
                     st.error(f"Inference failed: {e}")
                 finally:
