@@ -10,7 +10,7 @@ st.set_page_config(page_title="Pinworm Egg Detection", layout="wide")
 st.title("Pinworm Egg Detection (YOLO)")
 
 st.sidebar.header("Settings")
-model_path = st.sidebar.text_input("Model path", value="yolov8n.pt")
+model_path = st.sidebar.text_input("Model path", value="best.pt")
 device_option = st.sidebar.selectbox("Device", options=["cpu", "cuda"], index=0)
 confidence_threshold = st.sidebar.slider("Confidence threshold", 0.0, 1.0, 0.25, 0.01)
 
