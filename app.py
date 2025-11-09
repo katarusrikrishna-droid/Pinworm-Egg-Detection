@@ -5,6 +5,7 @@ import numpy as np
 import tempfile
 import os
 import io
+import cv2
 
 st.set_page_config(page_title="Pinworm Egg Detection", layout="wide")
 st.title("Pinworm Egg Detection (YOLO)")
