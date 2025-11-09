@@ -43,11 +43,20 @@ elif page == "App":
         st.sidebar.error(f"Failed to load model: {e}")
         st.stop()
 
-    uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+    # Allow user to either upload a file or take a picture with the webcam
+    st.info("You can either upload an image or take a photo with your camera.")
+    col1, col2 = st.columns(2)
+    with col1:
+        uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+    with col2:
+        camera_image = st.camera_input("Take a picture")
+
+    # Use camera image if provided, otherwise fall back to uploaded file
+    image_source = camera_image if camera_image is not None else uploaded_file
     run_button = st.button("Run detection")
 
-    if uploaded_file is not None:
-        image = Image.open(uploaded_file).convert("RGB")
+    if image_source is not None:
+        image = Image.open(image_source).convert("RGB")
         st.image(image, caption="Input image")
 
         if run_button:
