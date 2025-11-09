@@ -81,7 +81,8 @@ elif page == "App":
                         r = results[0]
                         # Annotated image as numpy array
                         annotated = r.plot()  # returns RGB ndarray
-                        st.image(annotated, caption="Annotated image")
+                        annotated_rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
+                        st.image(annotated_rgb, caption="Annotated image")
 
                         # Number of detections
                         num_detections = len(r.boxes)
