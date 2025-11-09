@@ -56,7 +56,7 @@ elif page == "App":
     run_button = st.button("Run detection")
 
     if image_source is not None:
-        image = Image.open(image_source).convert("RGB")
+        image = Image.open(image_source)
         st.image(image, caption="Input image")
 
         if run_button:
